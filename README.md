@@ -1,1 +1,1 @@
-This is the system emgineering and  devOps repository for the ALX program.
+This is the system engineering and  DevOps repository for the ALX program.
