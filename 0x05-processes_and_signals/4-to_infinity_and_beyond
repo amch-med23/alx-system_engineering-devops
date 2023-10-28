@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# this scripts prints "To infinity and beyond" while sleeping 2 secs after each eretation
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+	done

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# this is a bash script tht shows the parent and the shild pid of this script.
+
+pgrep -l bash

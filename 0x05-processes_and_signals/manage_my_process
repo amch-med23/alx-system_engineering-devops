@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# this script writes indefinitely "I am alive!" to the file /tmp/my_process
+# sleeps for 2 secs every erotation
+
+while true
+do
+	echo "I am alive!" >> /tmp/my_process
+	sleep 2
+done

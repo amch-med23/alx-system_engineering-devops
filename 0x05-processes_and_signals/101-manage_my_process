@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# this script manages 'manage_my_process' script. it takes the following arguments:
+# start -> starts manage_my_process and creates a file '/var/run/my_process.pid' containing it's pid. and displays 'manage_my_process started'
+# stop -> stops the script nd delets the file /var/run/my_process.pid nd displays 'manage_my_script stoped'
+# restar -> runs the above 'stop' and 'start' operations and displays 'manage_my_prcess restarted'
+# in case of ivnalide or no argument the scripts displays 'Usage: manage_my_script {start | stop | restart}'
+
+if [ $# -gt 0 ]
+then
+    if [ "$1" == "start" ]
+    then
+        ./manage_my_process &
+        touch /var/run/my_process.pid
+        echo "$!" > /var/run/my_process.pid
+        echo "manage_my_process started"
+    elif [ "$1" == "stop" ]
+    then
+        echo "manage_my_process stopped"
+        kill "$(cat /var/run/my_process.pid)"
+        rm -f /var/run/my_process.pid
+    elif [ "$1" == "restart" ]
+    then
+        kill "$(cat /var/run/my_process.pid)"
+        rm -f /var/run/my_process.pid
+        ./manage_my_process &
+        touch /var/run/my_process.pid
+        echo "$!" > /var/run/my_process.pid
+        echo "manage_my_process restarted"
+    else
+        echo "Usage: manage_my_process {start|stop|restart}"
+    fi
+else
+    echo "Usage: manage_my_process {start|stop|restart}"
+fi

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# this prints the bash proces ids, without usig pgrep.
+# shellcheck disable=SC2009
+
+ps auxf | grep bash
