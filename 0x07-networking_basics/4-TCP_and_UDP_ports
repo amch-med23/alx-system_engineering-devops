@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# a scipt that shows the listing of a sockets,
+
+netstat -l --program
