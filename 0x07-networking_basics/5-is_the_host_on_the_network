@@ -1,4 +1,4 @@
-#!/usr/bin/nev bash
+#!/usr/bin/env bash
 # this script shecks the availability of an address on the network.
 
 if [ $# -eq 0 ]
