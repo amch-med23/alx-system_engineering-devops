@@ -1,0 +1,5 @@
+task 3 image url: https://www.dropbox.com/scl/fi/4hy4fvkqsghip1wgbw6m6/task-3.png?rlkey=ackbc1mr330hszobuloyjzn07&dl=0
+
+-- specifics about this infrastructure:
+
+1- the new in this infra structure is that we have a cluster for each server component (DB, App server, Web Server, Code Base ...). this way we avoid a SPOFs. as well as we added a next load balancer to enforce the load balancing effect on our infrastructure.
