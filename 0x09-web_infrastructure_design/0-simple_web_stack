@@ -1,0 +1,25 @@
+Screenshot URL: https://www.dropbox.com/scl/fi/iafc67in4bpeyrzl2fo7g/task-0.png?rlkey=qh667k5or05wie8lg86wictv6&dl=0
+
+-- answers to the quations:
+
+1-what is a server: a server is a computer that fullfills the clients requests, by sending responces to the client.
+
+2-what is the role of the domain name: the domaine name is a humain readable string that points to a server ip adress (it was invented for memorizing reasons. humains can't remember sequance of numbers but can remember strings.)
+
+3-What type of DNS record www is in www.foobar.com: www is a subdomain to the domain 'foobar.com'
+
+4-What is the role of the web server: is to handle requests and responses translation using HTTP protocol.
+
+5-What is the role of the application server: to handle the application logic (the web app core)
+
+6-What is the role of the database: to store data and retreaive it by calls from the application files.
+
+7-What is the server using to communicate with the computer of the user requesting the website: TCP/IP protocol and HTTP, in adition to the webserver software.
+
+-- the issues with this infrastructure are:
+
+1-SPOF : single point of failure. as you can see in the diagram if any part in the server side failed the whole application will stops functioning normally or halts. (this can be case by any part [DB, WebServer, etc...])
+
+2-Downtime when maintenance needed (like deploying new code web server needs to be restarted): this does not need collaboration because in order to update a portion of the web app we need to update the Application Files and for the changes to take effect we need to restart the web server.
+
+3-Cannot scale if too much incoming traffic: because we do not have a load balancer for now, so it will be very deficult to scale (add more portions to the code base and setting up a bigous databse engine).
