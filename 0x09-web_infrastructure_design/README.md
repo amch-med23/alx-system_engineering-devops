@@ -1,1 +1,1 @@
-#This is the Web infrastructure design project folder.
+This is the Web infrastructure design project folder.
