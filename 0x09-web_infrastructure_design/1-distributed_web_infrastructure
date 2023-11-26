@@ -1,0 +1,23 @@
+task 1 image URL: https://www.dropbox.com/scl/fi/bojqrt0h6bq1wk20ujj22/task-1.png?rlkey=qpjf4englzrj4lm9xkhdl895j&dl=0
+
+-- specifics explaination:
+1-For every additional element, why you are adding it: for the server 02 (look at the image.) we added it to reduce the load on the original serve. we made the database unified because this will save resources on each of the servers (adhering to the task rewuirement: (design a three server web infrastructure) the third server is the databe server.
+
+2-What distribution algorithm your load balancer is configured with and how it works: the load balancer is configured with: HAProxy is using TCP/HTTP Load Balancing that distributes incoming traffic to multiple servers (in this case 2), it usees various algorithms like : Round-robin, Least connectins, IP hash
+
+3-Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both: first lets define the terms:
+-> Active-Active connection: An active-active connection is a type of network architecture that allows for multiple devices to be connected and active simultaneously
+-> Active-Passsive connection: this is a type of connection that is used in the context of networking protocols such as TCP/IP. In this type of connection, one machine is responsible for initiating the connection, while the other machine waits for the connection request and responds to it.
+
+-> so based on the terms definition above our server is Active-Active connection because the infrastructure ca handle multiple connected and active devices simultaneously, the load balancer will make this more relaiable.
+
+4-How a database Primary-Replica (Master-Slave) cluster works: the data on the Master Database gets copied to the Slave Database, while the server is up both of them are running, but the Master is the one serving data. in case of the master DataBase is failed, the data flow switches to the Slave DataBase.
+
+5-What is the difference between the Primary node and the Replica node in regard to the application: there is no deferance between the nodes for the application, because there is no shared point between the two applicatins stored in each node (except the DataBase).
+
+-- issues are with this infrastructure:
+1- SPOF: Single point of failure: if the Load balancer failed, the comunication will fail, because the Load Balancer is the single node that manages the request redirection to bothe nodes (Servers)
+
+2- Security is a bigg consurn because the network is open and there is not network packet filter in place (like Firewall), as well as securing the HTTP communication channel. (HTTPS)
+
+3- no monitoring is set up for the servers for now.
