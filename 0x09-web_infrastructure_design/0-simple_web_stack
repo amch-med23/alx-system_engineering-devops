@@ -6,7 +6,7 @@ Screenshot URL: https://www.dropbox.com/scl/fi/599a815ln1clryi9ppf1b/task-0.png?
 
 2-what is the role of the domain name: the domaine name is a humain readable string that points to a server ip adress (it was invented for memorizing reasons. humains can't remember sequance of numbers but can remember strings.)
 
-3-What type of DNS record www is in www.foobar.com: www is a subdomain to the domain 'foobar.com'
+3-What type of DNS record www is in www.foobar.com: www is a CNAME to the domain 'foobar.com'
 
 4-What is the role of the web server: is to handle requests and responses translation using HTTP protocol.
 
