@@ -1,7 +1,7 @@
-task 1 image URL: https://www.dropbox.com/scl/fi/bojqrt0h6bq1wk20ujj22/task-1.png?rlkey=qpjf4englzrj4lm9xkhdl895j&dl=0
+task 1 image https://www.dropbox.com/scl/fi/165xu3abddvj8v33w560w/task-1.png?rlkey=oniqqbmdbvnofmmguui4cwkei&dl=0
 
 -- specifics explaination:
-1-For every additional element, why you are adding it: for the server 02 (look at the image.) we added it to reduce the load on the original serve. we made the database unified because this will save resources on each of the servers (adhering to the task rewuirement: (design a three server web infrastructure) the third server is the databe server.
+1-For every additional element, why you are adding it: for the server 02 (look at the image.) we added it to reduce the load on the original serve. we made the database unified because this will save resources on each of the servers.
 
 2-What distribution algorithm your load balancer is configured with and how it works: the load balancer is configured with: HAProxy is using TCP/HTTP Load Balancing that distributes incoming traffic to multiple servers (in this case 2), it usees various algorithms like : Round-robin, Least connectins, IP hash
 
