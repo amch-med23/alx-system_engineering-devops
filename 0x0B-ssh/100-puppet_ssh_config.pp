@@ -1,18 +1,18 @@
-# Configurng the SSH CLient file, as per requested.
+# Using Puppet file to configure the etc/ssh/ssh_config file
 
 
 file { '/etc/ssh/ssh_config':
-  ensure  => present,
+  ensure => present,
 }
 
-file_line { 'Set private key':
+file_line { 'Deactivate pwd auth':
   path  => '/etc/ssh/ssh_config',
-  line  => 'IdentityFile ~/.ss h/school',
-  match => '^IdentityFile',
-}
-
-file line { 'Deactivate password authentication':
-  path  => '/stc/ssh/ssh_config',
   line  => 'PasswordAuthentication no',
   match => '^PasswordAuthentication',
+}
+
+file_line { 'Add private key file to ssh_config':
+  path  => '/etc/ssh/ssh_config',
+  line  => 'IdentityFile ~/.ssh/school',
+  match => '^IdentityFile',
 }
