@@ -1,18 +1,12 @@
-# Using Puppet file to configure the etc/ssh/ssh_config file
+# Poppet file to configure /stc/ssh/ssh_config
 
-
-file { '/etc/ssh/ssh_config':
-  ensure => present,
+file_line { 'Add the identity file to ssh_config':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    IdentityFile ~/.ssh/school',
 }
-
-file_line { 'Deactivate pwd auth':
-  path  => '/etc/ssh/ssh_config',
-  line  => 'PasswordAuthentication no',
-  match => '^PasswordAuthentication',
-}
-
-file_line { 'Add private key file to ssh_config':
-  path  => '/etc/ssh/ssh_config',
-  line  => 'IdentityFile ~/.ssh/school',
-  match => '^IdentityFile',
+file_line { 'Disable password authentication':
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
 }
