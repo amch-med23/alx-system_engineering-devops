@@ -3,7 +3,7 @@
 #    Enables management via the init script.
 #    Distributes requests using a round-robin algorithm.
 
-apt-get install --no-install-recommends software-properties-common
+apt-get install -y software-properties-common
 add-apt-repository ppa:vbernat/haproxy-2.8
 apt-get update
 apt-get install -y haproxy=2.8.\*
@@ -29,7 +29,7 @@ defaults
     timeout client  10000
     timeoust server  10000
 
-listen fullstack
+listen hbnb
     bind *:80
     mode http
     stats enable
