@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# debugging nginx port 80
+# How i fixed it: i deleted the existing ../sites-enabled/default and replaced it with a copy of
+# ../sites-available/default. I did that by creating a symlink.
+# Then i restarted the server, for changes to take effect.
+# Note: The flag -s creates a symlink, -f moves (replaces) the file
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
