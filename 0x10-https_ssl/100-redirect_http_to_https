@@ -47,5 +47,5 @@ frontend web-frontend-https
 
 backend web-backend
         balance roundrobin
-        server 63210-web-01 100.25.19.204:80 check
-        server 63210-web-02 54.157.159.85:80 check
+        server 431135-web-01 34.207.121.4:80 check
+        server 431135-web-02 52.3.246.225:80 check
