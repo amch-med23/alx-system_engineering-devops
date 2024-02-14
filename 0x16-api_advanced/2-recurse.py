@@ -1,30 +1,51 @@
 #!/usr/bin/python3
-"""Function to query a list of all hot posts on a given Reddit subreddit."""
+"""Get list of titles recursevly"""
 import requests
+import time
 
 
-def recurse(subreddit, hot_list=[], after="", count=0):
-    """Returns a list of titles of all hot posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "after": after,
-        "count": count,
-        "limit": 100
-    }
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
-    if response.status_code == 404:
-        return None
+def helper(url, hot_list, after):
+    header = {'User-Agen': 'recurse_all_posts/1.0'}
+    payload = {'limit': 5, 'count': len(hot_list), 'after': after}
+    res = requests.get(url, headers=header,
+                       params=payload, allow_redirects=False)
 
-    results = response.json().get("data")
-    after = results.get("after")
-    count += results.get("dist")
-    for c in results.get("children"):
-        hot_list.append(c.get("data").get("title"))
+    if res.status_code == 429:
+        time.sleep(5)
+        helper(url, hot_list, after)
 
-    if after is not None:
-        return recurse(subreddit, hot_list, after, count)
-    return hot_list
+    json = res.json()
+    data = json.get('data')
+
+    if not data or not data.get('before'):
+        return 0
+
+    if res.status_code == 200:
+        posts = data.get('children')
+        for post in posts:
+            hot_list.append(post.get('data').get('title'))
+
+        helper(url, hot_list, data.get('after'))
+
+
+def recurse(subreddit, hot_list=[]):
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    header = {'User-Agen': 'recurse_all_posts/1.0'}
+    res = requests.get(url, headers=header,
+                       params={'limit': 5}, allow_redirects=False)
+
+    if res.status_code == 429:
+        time.sleep(5)
+        recurse(subreddit)
+
+    json = res.json()
+    data = json.get('data')
+
+    if res.status_code == 200:
+        posts = data.get('children')
+        for post in posts[1:]:
+            hot_list.append(post.get('data').get('title'))
+        helper(url, hot_list, data.get('after'))
+        return hot_list
+    else:
+        None
