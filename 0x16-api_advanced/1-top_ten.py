@@ -1,16 +1,18 @@
 #!/usr/bin/python3
-"""Get top ten hot posts"""
+""" retrieve titles of hot posts """
+
 import requests
 
 
 def top_ten(subreddit):
-    url = 'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit)
-    header = {'User-Agen': 'top_ten_posts/1.0'}
-    res = requests.get(url, headers=header, allow_redirects=False)
-    if res.status_code == 200:
-        data = res.json()
-        posts = data.get('data').get('children')
-        for post in posts:
-            print(post.get('data').get('title'))
+    """ function to retrieve post titles 10 in number """
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+    headers = {"User-agent": "nadduli daniel"}
+
+    posts = requests.get(url, headers=headers, allow_redirects=False)
+
+    if posts.status_code == 200:
+        for post in posts.json()['data']['children']:
+            print(post['data']['title'])
     else:
         print(None)
