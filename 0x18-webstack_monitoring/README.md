@@ -1,1 +1,1 @@
-This is the webstack Monitoring project folder.
+This is the Webstack Monitoring project folder.
