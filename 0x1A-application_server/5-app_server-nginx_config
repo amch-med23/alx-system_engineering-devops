@@ -1,4 +1,4 @@
-# Configures Nginx to serve he route /api/ from he local proxy in Airbnb_clone_v3.
+# Configures Nginx to serve he route / from the local proxy in Airbnb_clone_v4.
 
 server {
     # Listen on port 80
@@ -21,11 +21,20 @@ server {
         proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
     }
 
-    # Serve /api/ roue from Airbnb_clone_v3
+    # Serve /api/ route from Airbnb_clone_v3
     location /api/ {
         proxy_pass http://127.0.0.1:5002/api/;
     }
 
+    # Configure /2-hbnb route for Airbnb_clone_v4 as / route (the root route)
+    location / {
+        proxy_pass http://127.0.0.1:5003/2-hbnb;
+    }
+
+    # Serve the static content for Airbnb_clone_v4
+    location /static {
+        proxy_pass http://127.0.0.1:5003;
+    }
     # case of errors (404)
     error_page 404 /404-html;
     location /404 {
